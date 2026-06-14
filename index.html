@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SECVH DIGITEX Entries — CGMA Support</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --digitex-pink: #d12c8b;
+    --digitex-pink-dark: #9c1d72;
+    --digitex-pink-soft: #f8d7ea;
+    --digitex-pink-light: #fff3fa;
+    --utm-purple: #5b2b82;
+
+    --text-primary: #2a1230;
+    --text-muted: #7b4b70;
+    --border-card: #f1b8d8;
+    --bg-page: #fff7fc;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background:
+      radial-gradient(circle at top left, rgba(209, 44, 139, 0.13), transparent 35%),
+      radial-gradient(circle at bottom right, rgba(156, 29, 114, 0.08), transparent 32%),
+      var(--bg-page);
+    min-height: 100vh;
+    padding: 2.5rem 1rem;
+    color: var(--text-primary);
+  }
+
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--digitex-pink), var(--digitex-pink-dark));
+    border-radius: 20px;
+    padding: 2rem 2rem 1.75rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    box-shadow: 0 18px 38px rgba(209, 44, 139, 0.22);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    right: -120px;
+    top: -150px;
+  }
+
+  .header::after {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.16);
+    right: 40px;
+    bottom: -130px;
+  }
+
+  .header-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: #fff;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .header-text {
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-text h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 7px;
+    letter-spacing: -0.5px;
+  }
+
+  .header-text p {
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.65;
+    max-width: 650px;
+  }
+
+  .accent-strip {
+    height: 4px;
+    background: #fff;
+    border-radius: 0 0 5px 5px;
+    margin-bottom: 1.75rem;
+    width: 96px;
+    margin-left: 2rem;
+    box-shadow: 0 0 0 1px var(--digitex-pink-soft);
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--digitex-pink-dark);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    padding-left: 2px;
+  }
+
+  .project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #fff;
+    border: 1px solid var(--border-card);
+    border-radius: 16px;
+    padding: 1.05rem 1.15rem;
+    transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+  }
+
+  .card:hover {
+    border-color: var(--digitex-pink);
+    box-shadow: 0 0 0 4px rgba(209, 44, 139, 0.10);
+    transform: translateY(-1px);
+  }
+
+  .entry-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: var(--digitex-pink-light);
+    color: var(--digitex-pink-dark);
+    border: 1px solid var(--digitex-pink-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .meta {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .proj-num {
+    font-size: 10.5px;
+    font-weight: 800;
+    color: var(--digitex-pink);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+
+  .proj-name {
+    font-size: 16.5px;
+    font-weight: 800;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
+  }
+
+  .proj-cta {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+
+  .like-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--digitex-pink);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 9px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.15s, transform 0.15s;
+  }
+
+  .like-btn:hover {
+    background: var(--digitex-pink-dark);
+    transform: translateY(-1px);
+  }
+
+  .like-btn svg {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border-card);
+    margin: 1.5rem 0;
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .footer-left {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--digitex-pink-dark);
+    font-weight: 700;
+  }
+
+  .footer-right svg {
+    width: 14px;
+    height: 14px;
+    fill: var(--digitex-pink);
+  }
+
+  @media (max-width: 620px) {
+    body {
+      padding: 1.4rem 0.85rem;
+    }
+
+    .header {
+      padding: 1.5rem;
+      border-radius: 18px;
+    }
+
+    .header-text h1 {
+      font-size: 21px;
+    }
+
+    .accent-strip {
+      margin-left: 1.5rem;
+    }
+
+    .card {
+      align-items: flex-start;
+    }
+
+    .like-btn {
+      padding: 9px 13px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .card {
+      flex-wrap: wrap;
+    }
+
+    .entry-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+    }
+
+    .like-btn {
+      width: 100%;
+      justify-content: center;
+      margin-top: 4px;
+    }
+
+    .proj-name {
+      white-space: normal;
+    }
+  }
+</style>
+</head>
+
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
+        <path d="M4 5.5h16M4 12h16M4 18.5h10"/>
+        <path d="M17 16l2 2 3-4"/>
+      </svg>
+    </div>
+
+    <div class="header-text">
+      <h1>SECVH DIGITEX Entries</h1>
+      <p>
+        Please support our SECVH DIGITEX entries! This is to help us win the netizen support award in DIGITEX2026.
+        Open each Facebook post and leave a like to support our representatives.
+      </p>
+    </div>
+  </div>
+
+  <div class="accent-strip"></div>
+
+  <div class="section-label">6 SECVH DIGITEX Entries · Facebook</div>
+
+  <div class="project-list" id="list"></div>
+
+  <div class="divider"></div>
+
+  <div class="footer">
+    <span class="footer-left">Thank you for supporting SECVH projects.</span>
+
+    <div class="footer-right">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </svg>
+      CGMA support matters
+    </div>
+  </div>
+
+</div>
+
+<script>
+const projects = [
+  {
+    name: "SAFESENSE AI",
+    url: "https://www.facebook.com/share/1RiYBZZnXn/?mibextid=wwXIfr"
+  },
+  {
+    name: "SENTRYPUMP",
+    url: "https://www.facebook.com/share/p/194Z3amrtD/"
+  },
+  {
+    name: "XRACTIVE",
+    url: "https://www.facebook.com/share/p/1HY2MBuFEr/?mibextid=wwXIfr"
+  },
+  {
+    name: "EZPRINT",
+    url: "https://www.facebook.com/share/18x22HtRbR/?mibextid=wwXIfr"
+  },
+  {
+    name: "MOBIVIA",
+    url: "https://www.facebook.com/share/p/191SYFc6f8/?mibextid=wwXIfr"
+  },
+  {
+    name: "SIGNBRIDGE",
+    url: "https://www.facebook.com/share/1X3wUZnoba/?mibextid=wwXIfr"
+  }
+];
+
+const fbIcon = `
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M24 12.073C24 5.406 18.627 0 12 0S0 5.406 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+</svg>`;
+
+const list = document.getElementById('list');
+
+projects.forEach((p, i) => {
+  const num = String(i + 1).padStart(2, '0');
+
+  const card = document.createElement('div');
+  card.className = 'card';
+
+  card.innerHTML = `
+    <div class="entry-badge">${num}</div>
+
+    <div class="meta">
+      <div class="proj-num">Entry ${num}</div>
+      <div class="proj-name">${p.name}</div>
+      <div class="proj-cta">
+        Open the Facebook post and leave a like to support this SECVH DIGITEX entry.
+      </div>
+    </div>
+
+    <a class="like-btn" href="${p.url}" target="_blank" rel="noopener noreferrer" aria-label="Open ${p.name} on Facebook">
+      ${fbIcon} Support
+    </a>
+  `;
+
+  list.appendChild(card);
+});
+</script>
+
+</body>
+</html>
